@@ -1,6 +1,7 @@
 const axios = require("axios");
 const Checkout = require("../models/checkoutModel");
 
+//this function hold the checkout logic for every product
 exports.checkout = async (req, res, next) => {
   const productId = req.params.product;
 

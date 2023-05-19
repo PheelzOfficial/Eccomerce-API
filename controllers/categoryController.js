@@ -15,7 +15,7 @@ exports.allCategories = async (req, res, next) => {
 };
 
 exports.singleCategory = async (req, res, next) => {
-  const { categoryName } = req.params;
+  const { categoryName } = req.params.category;
 
   try {
     const category = await Category.findOne({ name: categoryName }).populate(

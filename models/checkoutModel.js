@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+//this is the checkout schema/model that saves product that are checked out successfully
 const checkoutSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,

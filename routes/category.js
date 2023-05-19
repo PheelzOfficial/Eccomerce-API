@@ -6,6 +6,6 @@ const route = express.Router();
 route.get("/", controller.allCategories);
 
 //this is to get a single category
-route.get("/:single-category", controller.singleCategory);
+route.get("/:category", controller.singleCategory);
 
 module.exports = route;

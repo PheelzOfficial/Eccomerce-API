@@ -1,5 +1,6 @@
 const Product = require("../models/productModel");
 
+//this function contains the logic to post a product to the database
 exports.postProduct = async (req, res) => {
   try {
     if (!req.files) {
@@ -35,6 +36,7 @@ exports.postProduct = async (req, res) => {
     // Create a new product in the database
     const newProduct = Product.create({
       title: req.body.title,
+      description: req.body.description,
       price: req.body.price,
       brand: req.body.brand,
       size: req.body.size,
@@ -54,9 +56,9 @@ exports.postProduct = async (req, res) => {
     res.status(201).json({
       status: 200,
       message: "PRODUCT uploaded successfully",
-      // data: {
-      //   user: newProduct,
-      // },
+      data: {
+        user: newProduct,
+      },
     });
   } catch (err) {
     console.log(err.message);
@@ -67,6 +69,7 @@ exports.postProduct = async (req, res) => {
   }
 };
 
+//this contains the get all products logic
 exports.allProduct = async (req, res) => {
   try {
     const products = await Product.find();
@@ -85,6 +88,7 @@ exports.allProduct = async (req, res) => {
   }
 };
 
+//this contains the get single product logic
 exports.singleProduct = async (req, res) => {
   try {
     const productId = req.params.id;
@@ -110,6 +114,7 @@ exports.singleProduct = async (req, res) => {
   }
 };
 
+//this function helps to delete a product from the database
 exports.deleteProduct = async (req, res) => {
   try {
     const product = await Product.findByIdAndDelete(req.params.id);
@@ -128,12 +133,13 @@ exports.deleteProduct = async (req, res) => {
   }
 };
 
+//this function contains the logic to update or edit any field of the product
 exports.updateProduct = async (req, res) => {
   const id = req.params.id;
-  // const productId = id.toString(),
-  // const product = await Product.
-  await Product.findByIdAndUpdate(id.toString(), {
+  const productId = id.toString();
+  await Product.findByIdAndUpdate(productId, {
     title: req.body.title,
+    description: req.body.description,
     price: req.body.price,
     brand: req.body.brand,
     size: req.body.size,
